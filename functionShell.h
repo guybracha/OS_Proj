@@ -7,8 +7,9 @@
 char* inputFromUser();
 char** splitString(char*);
 void getLocation();
-void exit();
-void echo();
-void cd();
+void _exit();
+void echo(char**);
+void cd(char*);
 void cp();
 void get_dir();
+void logout(char*);

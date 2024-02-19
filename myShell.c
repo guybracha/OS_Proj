@@ -9,17 +9,31 @@ int main(){
     wellcome();
 
     while(1){
+        getLocation();
+        char *str = inputFromUser();
+        if(strcmp(str, "exit") == 0){
+            logout(str);
+        }
+        char **arguments = splitString(str);
+        if(strcmp(str,"echo") == 0){
+            echo(arguments);
+        }
+        free(str);
+        free(arguments);
         char str[40]="hello1 hello2 hello3";
         puts("SubStr");
         puts(str);
         char* subStr = strtok(str, " ");
-        while ((subStr=strtok(NULL," "))!=NULL)
-        {
-            puts(subStr);
-            puts(str);
+        if(strcmp(str,"exit")==0){
+            free(str);
+            puts("logout");
+            _exit(0);
         }
     }
     char* pArr[10];
 
     return 0;
+}
+void wellcome(){
+    puts("Hello Shelly Here");
 }
