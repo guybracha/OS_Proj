@@ -13,3 +13,5 @@ void cd(char*);
 void cp();
 void get_dir();
 void logout(char*);
+void delete();
+void system();
