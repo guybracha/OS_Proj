@@ -16,4 +16,6 @@
 
 char *getInputFromUser();
 void getLocation();
-void wellcome();
+void welcome();
+void printPattern(int radius);
+void **splitArguement(char* str);
