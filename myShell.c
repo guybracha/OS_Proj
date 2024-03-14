@@ -20,20 +20,21 @@ int main(){
         }
         free(str);
         free(arguments);
-        char str[40]="hello1 hello2 hello3";
+        char str[40] = "hello1 hello2 hello3";
         puts("SubStr");
         puts(str);
-        char* subStr = strtok(str, " ");
-        if(strcmp(str,"exit")==0){
-            free(str);
+        char *subStr = strtok(str, " ");
+        if (strcmp(subStr, "exit") == 0)
+        {
             puts("logout");
-            _exit(0);
+            _exit("");
         }
     }
     char* pArr[10];
 
     return 0;
 }
+
 void wellcome(){
     puts("Hello Shelly Here");
 }

@@ -4,3 +4,4 @@
 #include<stdlib.h>
 
 void wellcome();
+void customSystem();
