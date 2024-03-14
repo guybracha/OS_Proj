@@ -1,19 +1,21 @@
-makefile:
-    FLAGS = -Wall -g
-    CC = gcc
-
-all: myShell
+CC = gcc
+FLAGS = -Wall -g
+    
+all: clean myShell
 	./myShell
 
-myShell: myShell.o functionShell.o
-	$(CC) $(FLAGS) -o myShell myShell.o functionShell.o
+leak: clean myShell
+	valgrind --leak-check=full --error-exitcode=1 ./myShell
+	
 
-myShell.o: myShell.c myShell.h functionShell.h
-	$(CC) $(FLAGS) -c myShell.c -I.
+myShell:myShell.o myFunction.o
+	$(CC) $(FLAGS) -o myShell myShell.o myFunction.o
 
-functionShell.o: functionShell.c functionShell.h
-	$(CC) $(FLAGS) -c functionShell.c
+myShell.o: myShell.c myShell.h
+	$(CC) $(FLAGS) -c myShell.c
 
-.PHONY: clean
+myFunction.o:myFunction.c myFunction.h
+	$(CC) $(FLAGS) -c myFunction.c
+
 clean:
-	rm -f *.o *.a *.so ./myShell
+	rm -f *.o *.out myShell 
