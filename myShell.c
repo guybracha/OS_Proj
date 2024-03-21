@@ -1,13 +1,17 @@
+# include "myFunction.h"
+
 int main(){
-    welcome();
+    wellcome();
     getLocation();
-    printf("!!!");
-    char *bdika = "bdika ka ko ki";
-    char** ans = splitArgument(bdika);
-    for (int i = 0; i <5 ; i++)
+   
+    char input[] = "bdika ka ko ki";
+    char **ans = splitArgument(input);
+    for (int i = 0; ans[i] != NULL; i++)
     {
-        printf("%d",ans[i]);
+        printf("Argument %d: %s\n", i, ans[i]);
     }
+    free(ans);
+    
     
     return 0;
 }

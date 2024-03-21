@@ -1,21 +1,25 @@
-#include<stdio.h>
-#include<string.h>
-#include<ctype.h>
-#include<stdlib.h>
-#include<unistd.h>
-#include<sys/wait.h>
-#include<dirent.h>
-#include<sys/stat.h>
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <dirent.h>
+#include <sys/stat.h>
+#include <pwd.h>
+#include <limits.h>
+#include <sys/stat.h>    
+#include <sys/types.h>
 
 #define BUFF_SIZE 256
-#define blue() printf("\033[0;34m")
-#define reset() printf("\033[0m")
-#define green() printf("\033[0m")
-#define bold() printf("\e[1m")
-#define boldOff() printf("\e[m")
+#define BLUE() printf("\033[0;34m")
+#define RESET_COLOR() printf("\033[0m")
+#define GREEN() printf("\033[0m")
+#define BOLD() printf("\e[1m")
+#define BOLD_OFF() printf("\e[m")
 
 char *getInputFromUser();
 void getLocation();
-void welcome();
+void wellcome();
 void printPattern(int radius);
 void **splitArguement(char* str);
