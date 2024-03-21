@@ -25,3 +25,4 @@ void printPattern(int radius);
 void **splitArguement(char* str);
 void logout(char* str);
 void cd(char** arg);
+void cp(char** arg);

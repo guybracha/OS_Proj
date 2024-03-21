@@ -95,5 +95,27 @@ void cd(char** arg){
    {
     printf("-myshell: cd: %s: no such file or directory\n",arg[1]);
    }
-   
+}
+
+void cp(char** arg){
+    char ch;
+    FILE *src, *des;
+    if ((src = fopen(arguments[1], "r")) == NULL)
+    {
+        puts("Erorr");
+        return;
+    }
+    if ((des = fopen(arguments[2], "w")) == NULL)
+    {
+        puts("Erorr");
+        fclose(src);
+        return;
+    }
+
+    while ((ch = fgetc(src)) != EOF)
+    {
+        fputc(ch, des);
+    }
+    fclose(src);
+    fclose(des);
 }
