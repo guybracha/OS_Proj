@@ -79,3 +79,21 @@ void logout(char *input){
     puts("log out");
     exit(EXIT_SUCCESS);
 }
+
+void cd(char** arg){
+   if (strcmp(arg[1],"\"",1) != 0 && arg[2] != NULL)
+   {
+    puts("-myshell: cd: too many arguments");
+   } else if (strncmp(arg[1],"\"",1) == 0)
+   {
+    if (chdir(arg[1])!= 0)
+    {
+        printf("-myshell: cd: %s: no such file or directory\n",arg[1]);
+    }
+   }
+   if (chdir(arg[1]) != 0)
+   {
+    printf("-myshell: cd: %s: no such file or directory\n",arg[1]);
+   }
+   
+}
