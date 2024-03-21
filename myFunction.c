@@ -41,7 +41,7 @@ void getLocation(){
         exit(EXIT_FAILURE);
     }
 
-    buf = (char *)malloc(10*sizeof(char));
+    char* buf = (char *)malloc(10*sizeof(char));
     buf=getlogin();
     printf("\n%s\n",buf);
     if(getcwd(location, BUFF_SIZE) == NULL){
@@ -72,4 +72,10 @@ void **splitArguement(char* str){
     *(argumnts + (index + 1)) = NULL;
 
     return argumnts;
+}
+
+void logout(char *input){
+    free(input);
+    puts("log out");
+    exit(EXIT_SUCCESS);
 }

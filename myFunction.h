@@ -23,3 +23,4 @@ void getLocation();
 void wellcome();
 void printPattern(int radius);
 void **splitArguement(char* str);
+void logout(char* str);
