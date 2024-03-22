@@ -13,7 +13,6 @@ int main(){
     free(ans);
     char exit_buf[] ="exit";
     logout(exit_buf);
-    
-    
+       
     return 0;
 }

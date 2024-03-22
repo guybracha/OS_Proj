@@ -26,3 +26,6 @@ void **splitArguement(char* str);
 void logout(char* str);
 void cd(char** arg);
 void cp(char** arg);
+char *del_spaces(char *args);
+void delete(char **arg);
+void mypipe(char **argv1, char **argv2);
