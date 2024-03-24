@@ -242,3 +242,7 @@ void move(char **args){
     }
     
 }
+
+void echoppned(char **args){
+    
+}
