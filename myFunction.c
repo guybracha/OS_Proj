@@ -202,3 +202,43 @@ char* del_spaces(char* arg) {
 
     return path;
 }
+
+void move(char **args){
+    if (args[1] == NULL || args[2] == NULL)
+    {
+        printf("error in the input\n");
+        return;
+    }
+    FILE *original_file *destination_file;
+    char *original_path = args[1];
+    char *destination_path = args[2];
+
+    original_file = fopen(original_path, "r");
+    if (original_file == NULL)
+    {
+        printf("Error: unable to open the original file.\n");
+        return;
+    }
+    destination_file = fopen(destination_path,"w");
+    if (destination_file == NULL)
+    {
+        fclose(original_file);
+        printf("Error: unable to create/open the destination file.\n");
+        return;
+    }
+    int ch;
+    while ((ch = fgetc(original_file)) != EOF)
+    {
+        fputc(ch, destination_file);
+    }
+    fclose(original_file);
+    fclose(destination_file);
+
+    if (remove(original_path) != 0)
+    {
+        printf("Error: unable to remove the original file.\n");
+    } else {
+        printf("File move succesfully.\n");
+    }
+    
+}
