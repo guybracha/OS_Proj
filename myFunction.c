@@ -244,5 +244,50 @@ void move(char **args){
 }
 
 void echoppned(char **args){
+    int i = 1;
+    FILE *output_file = NULL;
+
+    while (args[i] != NULL)
+    {
+        if (strcmp(args[i], ">>") == 0)
+        {
+            if (args[i+1] != NULL)
+            {
+                output_file = fopen(args[i+1],"a");
+                if (output_file == NULL)
+                {
+                    output_file = fopen(args[i+1], "w");
+                    if (output_file ==NULL)
+                    {
+                        perror("error creaing file");
+                        return;
+                    }
+                }
+            } else {
+                printf("No filename specified agter '>>'\n");
+                return;
+            }
+            break;
+        }
+        i++;
+    }
+    i = 1;
+    while (args[i] != NULL)
+    {
+        if (strcmp(args[i], ">>") != 0)
+        {
+            if (output_file != NULL)
+            {
+                fprintf(output_file, "%s", args[i]);
+            }
+            else {
+                printf("%s ", args[i]);
+            }
+        }
+        i++;
+    } if (output_file != NULL)
+    {
+        fclose(output_file);
+    }
     
 }
