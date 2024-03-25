@@ -289,5 +289,4 @@ void echoppned(char **args){
     {
         fclose(output_file);
     }
-    
 }
