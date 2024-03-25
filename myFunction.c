@@ -290,3 +290,44 @@ void echoppned(char **args){
         fclose(output_file);
     }
 }
+
+void echorite(char **args){
+    char *username = args[1];
+    char *filepath = args[3];
+    char *content = args[2];
+
+    FILE *file = fopen(filepath,"w");
+    if(file == NULL){
+        perror("Error opening file");
+        return;
+    }
+
+    fprintf(file, "%s", content);
+
+    fclose(file);
+
+    printf("Content written to file %s bt user %s\n", filepath, username);
+}
+
+void read(char **args){
+    if(args[1] == NULL){
+        printf("Usage: %s <filepath>\n",args[0]);
+        return;
+    }
+
+    char *filePath = args[1];
+    FILE *file = fopen(filePath, "r");
+    if(file == NULL){
+        perror("error opening file");
+        return;
+    }
+
+    char buffer[1024];
+
+    printf("File content:\n");
+    while (fgets(buffer, sizeof(buffer),file) != NULL)
+    {
+        printf("%s",buffer);
+    }
+    fclose(file);
+}

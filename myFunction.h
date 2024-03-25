@@ -31,6 +31,6 @@ void delete(char **arg);
 void mypipe(char **argv1, char **argv2);
 void move(char **args);
 void echoppned(char **args);
-void echoride(char **args);
+void echorite(char **args);
 void read(char **args);
 void wordCount(char **args);
