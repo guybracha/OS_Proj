@@ -331,3 +331,40 @@ void read(char **args){
     }
     fclose(file);
 }
+
+void wordCount(char **args){
+    if(args[1] == NULL || args[2] ==NULL){
+        printf("Usage: %s <-w or -l> <filepath>\n", args[0]);
+        return;
+    }
+    char *option = args[1];
+    char *filePath = args[2];
+
+    FILE *file = fopen(filePath, "r");
+    if(file == NULL){
+        perror("error opening file");
+        return;
+    }
+
+    int wordCount = 0;
+    int lineCount = 0;
+    char buffer[1024];
+
+    while(fgest(buffer, sizeof(buffer),file) != NULL){
+        lineCount++;
+        char *token = strtok(buffer, " \t\n");
+        while(token != NULL){
+            wordCount++;
+            token = strtok(NULL, " \t\n");
+        }
+    }
+    fclose(file);
+
+    if(strcmp(option, "-w") == 0){
+        printf("word count: %d\n", wordCount);
+    } else if(strcmp(option, "-l") == 0){
+        printf("Line count: %d\n", lineCount);
+    } else{
+        printf("Invalid option\n");
+    }
+}
