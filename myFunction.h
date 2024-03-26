@@ -22,7 +22,7 @@ char *getInputFromUser();
 void getLocation();
 void wellcome();
 void printPattern(int radius);
-void **splitArguement(char* str);
+void **splitArgument(char* str);
 void logout(char* str);
 void cd(char** arg);
 void cp(char** arg);

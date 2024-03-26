@@ -55,23 +55,23 @@ void getLocation(){
     }
 }
 
-void **splitArguement(char* str){
+void **splitArgument(char* str){
     char *subStr;
     int size = 2;
     int index = 0;
     subStr = strtok(str, " ");
-    char **argumnts = (char **)malloc(size * sizeof(char *));
-    *(argumnts + index) = subStr;
+    char **arguments = (char **)malloc(size * sizeof(char *));
+    *(arguments + index) = subStr;
     while ((subStr = strtok(NULL, " ")) != NULL)
     {
         size++;
         index++;
-        *(argumnts + index) = subStr;
-        argumnts = (char **)realloc(argumnts, size * sizeof(char *));
+        *(arguments + index) = subStr;
+        arguments = (char **)realloc(arguments, size * sizeof(char *));
     }
-    *(argumnts + (index + 1)) = NULL;
+    *(arguments + (index + 1)) = NULL;
 
-    return argumnts;
+    return arguments;
 }
 
 void logout(char *input){
