@@ -203,45 +203,51 @@ char* del_spaces(char* arg) {
     return path;
 }
 
-void move(char **args){
-    if (args[1] == NULL || args[2] == NULL)
-    {
-        printf("error in the input\n");
+void move(char **args) {
+    if (args[1] == NULL || args[2] == NULL) {
+        printf("Error: insufficient arguments\n");
         return;
     }
-    FILE *original_file *destination_file;
+
+    FILE *original_file, *destination_file;
     char *original_path = args[1];
     char *destination_path = args[2];
 
     original_file = fopen(original_path, "r");
-    if (original_file == NULL)
-    {
+    if (original_file == NULL) {
         printf("Error: unable to open the original file.\n");
         return;
     }
-    destination_file = fopen(destination_path,"w");
-    if (destination_file == NULL)
-    {
-        fclose(original_file);
+
+    destination_file = fopen(destination_path, "w");
+    if (destination_file == NULL) {
+        fclose(original_file); // Close the original file stream before returning
         printf("Error: unable to create/open the destination file.\n");
         return;
     }
+
     int ch;
-    while ((ch = fgetc(original_file)) != EOF)
-    {
-        fputc(ch, destination_file);
+    while ((ch = fgetc(original_file)) != EOF) {
+        if (fputc(ch, destination_file) == EOF) {
+            fclose(original_file); // Close the file streams
+            fclose(destination_file);
+            printf("Error: writing to destination file failed.\n");
+            return;
+        }
     }
+
+    // Close the file streams
     fclose(original_file);
     fclose(destination_file);
 
-    if (remove(original_path) != 0)
-    {
+    // Remove the original file
+    if (remove(original_path) != 0) {
         printf("Error: unable to remove the original file.\n");
     } else {
-        printf("File move succesfully.\n");
+        printf("File moved successfully.\n");
     }
-    
 }
+
 
 void echoppned(char **args){
     int i = 1;
@@ -309,7 +315,7 @@ void echorite(char **args){
     printf("Content written to file %s bt user %s\n", filepath, username);
 }
 
-void read(char **args){
+void myRead(char **args){
     if(args[1] == NULL){
         printf("Usage: %s <filepath>\n",args[0]);
         return;
@@ -350,7 +356,7 @@ void wordCount(char **args){
     int lineCount = 0;
     char buffer[1024];
 
-    while(fgest(buffer, sizeof(buffer),file) != NULL){
+    while(fgets(buffer, sizeof(buffer),file) != NULL){
         lineCount++;
         char *token = strtok(buffer, " \t\n");
         while(token != NULL){
